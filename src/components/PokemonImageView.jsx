@@ -1,4 +1,4 @@
-export default function PokemonImageView() {
+export default function PokemonImageView({ normalImage, shinyImage }) {
   return (
     <div className="pokemon-image-container">
       {/* Star checkbox */}
@@ -9,16 +9,12 @@ export default function PokemonImageView() {
       </label>
 
       <img
-        src="/assets/images/pokemon/149.png"
-        alt="Dragonite"
+        src={normalImage}
+        alt="Normal form"
         className="pokemon-image visible"
         id="pokemon-image"
       />
-      <img
-        src="/assets/images/pokemon/149-shiny.png"
-        alt="Shiny Dragonite"
-        className="pokemon-image"
-      />
+      <img src={shinyImage} alt="Shiny form" className="pokemon-image" />
     </div>
   );
 }

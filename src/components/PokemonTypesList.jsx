@@ -1,10 +1,11 @@
 import TypeBadge from "./TypeBadge";
 
-export default function PokemonTypesList() {
+export default function PokemonTypesList({ types }) {
   return (
     <div className="pokemon-types-container">
-      <TypeBadge />
-      <TypeBadge />
+      {types.map((type) => (
+        <TypeBadge key={type} type={type} />
+      ))}
     </div>
   );
 }

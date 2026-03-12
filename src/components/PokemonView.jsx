@@ -1,9 +1,13 @@
 import PokemonImageView from "./PokemonImageView";
 import PokemonTypesList from "./PokemonTypesList";
 import PokedexEntry from "./PokedexEntry";
+import { placeholderPokemon } from "../js/dummy-data";
 
 export default function PokemonView({ pokemon }) {
-  const { name, dexNumber, dexEntry, normalImage, shinyImage, types } = pokemon;
+
+  // Destructure the necessary properties from the pokemon object, or use placeholder data if pokemon is null
+  const { name, dexNumber, dexEntry, normalImage, shinyImage, types } =
+    pokemon || placeholderPokemon;
 
   return (
     <main className="main-content">

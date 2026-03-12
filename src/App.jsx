@@ -18,7 +18,7 @@ function App() {
       </nav>
 
       {/* Right Panel - Pokemon Details */}
-      <PokemonView pokemon={dummyData[5]} />
+      <PokemonView pokemon={null} />
     </div>
   );
 }

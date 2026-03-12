@@ -42,7 +42,7 @@ export default function PokemonImageView({ normalImage, shinyImage }) {
 
       {/* Conditionally apply the "visible" CSS class if displayShiny is false AND image is loaded */}
       <img
-        key={normalImage}
+        key={`normal-${normalImage}`}
         src={normalImage}
         alt="Normal form"
         className={clsx("pokemon-image", { visible: !displayShiny && normalLoaded })}
@@ -52,7 +52,7 @@ export default function PokemonImageView({ normalImage, shinyImage }) {
 
       {/* Conditionally apply the "visible" CSS class if displayShiny is true AND image is loaded */}
       <img
-        key={shinyImage}
+        key={`shiny-${shinyImage}`}
         src={shinyImage}
         alt="Shiny form"
         className={clsx("pokemon-image", { visible: displayShiny && shinyLoaded })}

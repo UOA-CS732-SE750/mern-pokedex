@@ -1,6 +1,7 @@
 import PokemonList from "./components/PokemonList";
 import PokemonView from "./components/PokemonView";
 import SearchBar from "./components/SearchBar";
+import { dummyData } from "./js/dummy-data";
 
 function App() {
   return (
@@ -13,11 +14,11 @@ function App() {
         <SearchBar />
 
         {/* Pokemon list */}
-        <PokemonList />
+        <PokemonList pokemon={dummyData} />
       </nav>
 
       {/* Right Panel - Pokemon Details */}
-      <PokemonView />
+      <PokemonView pokemon={dummyData[5]} />
     </div>
   );
 }

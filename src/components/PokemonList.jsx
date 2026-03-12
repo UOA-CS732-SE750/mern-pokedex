@@ -7,8 +7,8 @@ export default function PokemonList({ pokemon, selectedId, onSelectPokemon }) {
         <PokemonListItem
           key={mon._id}
           pokemon={mon}
-          isSelected={mon._id === selectedId}
-          onClick={() => onSelectPokemon(mon)}
+          isSelected={mon.dexNumber === selectedId}
+          onClick={() => onSelectPokemon(mon.dexNumber)}
         />
       ))}
     </div>

@@ -8,6 +8,17 @@ function App() {
   // Keep track of selected pokemon
   const [selectedPokemon, setSelectedPokemon] = useState(null);
 
+  // Keep track of search options
+  const [searchOptions, setSearchOptions] = useState({
+    searchTerm: "",
+    gen: "all"
+  });
+
+  // Filtered list based on searchTerm
+  const filteredPokemon = dummyData.filter((pokemon) =>
+    pokemon.name.toLowerCase().includes(searchOptions.searchTerm.toLowerCase())
+  );
+
   return (
     <div className="pokedex-container">
       {/* Left Panel - Pokemon List */}
@@ -15,11 +26,14 @@ function App() {
         <h2>Pokédex</h2>
 
         {/* Search bar */}
-        <SearchBar />
+        <SearchBar
+          searchOptions={searchOptions}
+          onSearchOptionsChange={(opts) => setSearchOptions({ ...searchOptions, ...opts })}
+        />
 
         {/* Pokemon list */}
         <PokemonList
-          pokemon={dummyData}
+          pokemon={filteredPokemon}
           selectedId={selectedPokemon?._id}
           onSelectPokemon={setSelectedPokemon}
         />

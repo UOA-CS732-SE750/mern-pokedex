@@ -1,5 +1,6 @@
 export const dummyData = [
   {
+    _id: "1",
     dexNumber: 144,
     name: "Articuno",
     gen: 1,
@@ -13,6 +14,7 @@ export const dummyData = [
       "A legendary bird POKéMON that is said to appear to doomed people who are lost in icy mountains."
   },
   {
+    _id: "2",
     dexNumber: 145,
     name: "Zapdos",
     gen: 1,
@@ -26,6 +28,7 @@ export const dummyData = [
       "A legendary bird POKéMON that is said to appear from clouds while dropping enormous lightning bolts."
   },
   {
+    _id: "3",
     dexNumber: 146,
     name: "Moltres",
     gen: 1,
@@ -39,6 +42,7 @@ export const dummyData = [
       "Known as the legendary bird of fire. Every flap of its wings creates a dazzling flash of flames."
   },
   {
+    _id: "4",
     dexNumber: 147,
     name: "Dratini",
     gen: 1,
@@ -52,6 +56,7 @@ export const dummyData = [
       "Long considered a mythical POKéMON until recently when a small colony was found living underwater."
   },
   {
+    _id: "5",
     dexNumber: 148,
     name: "Dragonair",
     gen: 1,
@@ -65,6 +70,7 @@ export const dummyData = [
       "A mystical POKéMON that exudes a gentle aura. Has the ability to change climate conditions."
   },
   {
+    _id: "6",
     dexNumber: 149,
     name: "Dragonite",
     gen: 1,
@@ -78,6 +84,7 @@ export const dummyData = [
       "An extremely rarely seen marine POKéMON. Its intelligence is said to match that of humans."
   },
   {
+    _id: "7",
     dexNumber: 150,
     name: "Mewtwo",
     gen: 1,
@@ -91,6 +98,7 @@ export const dummyData = [
       "It was created by a scientist after years of horrific gene splicing and DNA engineering experiments."
   },
   {
+    _id: "8",
     dexNumber: 151,
     name: "Mew",
     gen: 1,

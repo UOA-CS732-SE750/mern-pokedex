@@ -2,8 +2,12 @@ import PokemonList from "./components/PokemonList";
 import PokemonView from "./components/PokemonView";
 import SearchBar from "./components/SearchBar";
 import { dummyData } from "./js/dummy-data";
+import { useState } from "react";
 
 function App() {
+  // Keep track of selected pokemon
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
+
   return (
     <div className="pokedex-container">
       {/* Left Panel - Pokemon List */}
@@ -14,11 +18,15 @@ function App() {
         <SearchBar />
 
         {/* Pokemon list */}
-        <PokemonList pokemon={dummyData} />
+        <PokemonList
+          pokemon={dummyData}
+          selectedId={selectedPokemon?._id}
+          onSelectPokemon={setSelectedPokemon}
+        />
       </nav>
 
       {/* Right Panel - Pokemon Details */}
-      <PokemonView pokemon={null} />
+      <PokemonView pokemon={selectedPokemon} />
     </div>
   );
 }

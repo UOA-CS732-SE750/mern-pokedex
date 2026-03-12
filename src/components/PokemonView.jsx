@@ -2,7 +2,7 @@ import PokemonImageView from "./PokemonImageView";
 import PokemonTypesList from "./PokemonTypesList";
 import PokedexEntry from "./PokedexEntry";
 
-export default function PokemonView() {
+export default function PokemonView({ pokemon }) {
   return (
     <main className="main-content">
       {/* Pokemon header */}

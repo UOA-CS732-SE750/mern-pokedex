@@ -112,3 +112,16 @@ export const dummyData = [
       "So rare that it is still said to be a mirage by many experts. Only a few people have seen it worldwide."
   }
 ];
+
+// Placeholder Pokemon data to use when no Pokemon is selected
+export const placeholderPokemon = {
+  _id: "0",
+  dexNumber: "---",
+  name: "---",
+  gen: 0,
+  normalImage: "/assets/images/pokeball-placeholder.svg",
+  shinyImage: "/assets/images/pokeball-placeholder.svg",
+  types: [],
+  crySound: "",
+  dexEntry: "---"
+};

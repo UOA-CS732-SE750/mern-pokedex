@@ -12,7 +12,8 @@ const speciesSchema = new Schema(
     shinyImage: { type: String, required: false },
     dexEntry: { type: String, required: false },
     types: [{ type: String, required: false, enum: VALID_TYPES }],
-    crySound: { type: String, required: false }
+    crySound: { type: String, required: false },
+    isFavourite: { type: Boolean, required: false, default: false }
   },
   {
     strict: true

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function SearchBar({ searchOptions, onSearchOptionsChange }) {
-  const { searchTerm, gen } = searchOptions;
+  const { searchTerm, gen, favouritesOnly } = searchOptions;
   return (
     <div className="search-container">
       <select
@@ -27,6 +27,14 @@ export default function SearchBar({ searchOptions, onSearchOptionsChange }) {
         value={searchTerm}
         onChange={(e) => onSearchOptionsChange({ searchTerm: e.target.value })}
       />
+      <label className="favourites-checkbox">
+        <input
+          type="checkbox"
+          checked={favouritesOnly || false}
+          onChange={(e) => onSearchOptionsChange({ favouritesOnly: e.target.checked })}
+        />
+        <span>Show favourites only</span>
+      </label>
     </div>
   );
 }

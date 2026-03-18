@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import StarCheckbox from "./StarCheckbox";
 
 // The ...props syntax allows us to pass through any additional props from the parent component to this one
 export default function PokemonListItem({ pokemon, isSelected, ...props }) {
@@ -10,6 +11,9 @@ export default function PokemonListItem({ pokemon, isSelected, ...props }) {
   // With ...props, we can pass through an onClick handler from the parent component
   return (
     <div className={clsx("pokemon-list-item", { active: isSelected })} {...props}>
+      <StarCheckbox
+        className="list-item-star"
+      />
       <span className="pokemon-number">#{dexNumber}</span>
       <span className="pokemon-name">{name}</span>
     </div>

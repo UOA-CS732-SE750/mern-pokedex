@@ -12,10 +12,11 @@ function App() {
   // Keep track of search options
   const [searchOptions, setSearchOptions] = useState({
     searchTerm: "",
-    gen: "1"
+    gen: "1",
+    favouritesOnly: false
   });
 
-  const { data: pokemon, isLoading, error } = useQueryPokedex(searchOptions.gen);
+  const { data: pokemon, isLoading, error } = useQueryPokedex(searchOptions.gen, searchOptions.favouritesOnly);
 
   // Filtered list based on searchTerm
   const filteredPokemon = pokemon.filter((pokemon) =>

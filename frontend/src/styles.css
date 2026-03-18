@@ -92,6 +92,32 @@ body {
   }
 }
 
+.favourites-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  cursor: pointer;
+  user-select: none;
+  color: #333;
+  font-size: 1em;
+
+  & input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #3498db;
+  }
+
+  & span {
+    flex: 1;
+  }
+
+  &:hover {
+    color: #3498db;
+  }
+}
+
 .pokemon-list {
   display: flex;
   flex-direction: column;
@@ -206,9 +232,6 @@ body {
 }
 
 .star-checkbox {
-  position: absolute;
-  top: 15px;
-  right: 15px;
   cursor: pointer;
   display: block;
 
@@ -231,6 +254,22 @@ body {
 
   &:hover img {
     transform: scale(1.1);
+  }
+}
+
+.star-checkbox-positioned {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.list-item-star {
+  margin-right: 12px;
+  flex-shrink: 0;
+
+  & img {
+    width: 24px;
+    height: 24px;
   }
 }
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import clsx from "clsx";
+import StarCheckbox from "./StarCheckbox";
 
 export default function PokemonImageView({ normalImage, shinyImage }) {
   // State to track whether to display the shiny image or not
@@ -18,17 +19,12 @@ export default function PokemonImageView({ normalImage, shinyImage }) {
   return (
     <div className="pokemon-image-container">
       {/* Star checkbox */}
-      <label className="star-checkbox">
-        {/* This checkbox is bound to the displayShiny state through its checked
-            prop and its onChange event */}
-        <input
-          type="checkbox"
-          checked={displayShiny}
-          onChange={() => setDisplayShiny(!displayShiny)}
-        />
-        <img src="/assets/images/star-64.png" alt="Star" />
-        <span className="tooltip">show / hide shiny image</span>
-      </label>
+      <StarCheckbox
+        checked={displayShiny}
+        onChange={() => setDisplayShiny(!displayShiny)}
+        tooltip="show / hide shiny image"
+        className="star-checkbox-positioned"
+      />
 
       {/* Show placeholder while current image is loading */}
       {!isCurrentImageLoaded && (

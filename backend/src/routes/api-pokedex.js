@@ -30,9 +30,9 @@ router.get("/", async (req, res) => {
     }
 
     const species = await Species.find(filter, "_id dexNumber gen name isFavourite");
-    res.json(species);
+    return res.json(species);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
 });
 
@@ -53,9 +53,9 @@ router.get("/:dexNumber", async (req, res) => {
     if (!species) {
       return res.status(404).json({ error: `Pokémon with dex number ${dexNumber} not found` });
     }
-    res.json(species);
+    return res.json(species);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
 });
 
@@ -81,7 +81,7 @@ router.patch("/:dexNumber/is-favourite", async (req, res) => {
     await species.save();
     return res.json(species);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
 });
 

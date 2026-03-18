@@ -29,7 +29,7 @@ export default function PokemonView({ dexNumber }) {
       {/* Pokemon header */}
       <div className="pokemon-header">
         <h1 className="pokemon-name">{name}</h1>
-        <span className="pokemon-number">#{dexNumber?.toString().padStart(3, "0")}</span>
+        <span className="pokemon-number">#{dexNumber?.toString().padStart(3, "0") || "---"}</span>
       </div>
 
       {/* Pokemon image */}

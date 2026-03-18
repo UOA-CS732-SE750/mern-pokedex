@@ -8,7 +8,7 @@ function App() {
   const [pokemon, setPokemon] = useState([]);
 
   // Keep track of selected pokemon
-  const [selectedDexNumber, setSelectedDexNumber] = useState(null);
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
 
   // Keep track of search options
   const [searchOptions, setSearchOptions] = useState({
@@ -49,13 +49,13 @@ function App() {
         {/* Pokemon list */}
         <PokemonList
           pokemon={filteredPokemon}
-          selectedId={selectedDexNumber}
-          onSelectPokemon={setSelectedDexNumber}
+          selectedId={selectedPokemon?._id}
+          onSelectPokemon={setSelectedPokemon}
         />
       </nav>
 
       {/* Right Panel - Pokemon Details */}
-      <PokemonView dexNumber={selectedDexNumber} />
+      <PokemonView dexNumber={selectedPokemon?.dexNumber} />
     </div>
   );
 }

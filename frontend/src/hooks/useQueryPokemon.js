@@ -10,7 +10,7 @@ export function useQueryPokemon(dexNumber) {
       if (!response.ok) {
         throw new Error("Failed to fetch pokemon data");
       }
-      return response.json();
+      return await response.json();
     },
     enabled: !!dexNumber, // Only run this query if dexNumber is truthy
     initialData: null

@@ -10,7 +10,7 @@ export function useQueryPokedex(gen) {
       if (!response.ok) {
         throw new Error("Failed to fetch pokedex data");
       }
-      return response.json();
+      return await response.json();
     },
     initialData: []
   });

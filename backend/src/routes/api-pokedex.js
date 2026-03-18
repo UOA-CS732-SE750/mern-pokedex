@@ -59,6 +59,13 @@ router.get("/:dexNumber", async (req, res) => {
   }
 });
 
+/**
+ * PATCH /api/pokedex/:dexNumber/is-favourite
+ *
+ * Request body should be JSON with a boolean property "isFavourite", e.g. { "isFavourite": true }
+ *
+ * Updates the isFavourite status of the specified Pokémon species and returns the updated species data.
+ */
 router.patch("/:dexNumber/is-favourite", async (req, res) => {
   try {
     const dexNumber = parseInt(req.params.dexNumber);
@@ -72,13 +79,16 @@ router.patch("/:dexNumber/is-favourite", async (req, res) => {
       return res.status(400).json({ error: "Invalid dex number" });
     }
 
-    const species = await Species.findOne({ dexNumber });
+    const species = await Species.findOneAndUpdate(
+      { dexNumber },
+      { isFavourite },
+      { new: true } // Return the updated document
+    );
+
     if (!species) {
       return res.status(404).json({ error: `Pokémon with dex number ${dexNumber} not found` });
     }
 
-    species.isFavourite = isFavourite;
-    await species.save();
     return res.json(species);
   } catch (error) {
     return res.status(500).json({ error: error.message });

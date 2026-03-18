@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { VALID_TYPES } from "../data/pokemon-types.js";
 
 const Schema = mongoose.Schema;
 

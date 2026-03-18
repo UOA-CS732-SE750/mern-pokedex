@@ -1,11 +1,10 @@
 import PokemonList from "./components/PokemonList";
 import PokemonView from "./components/PokemonView";
 import SearchBar from "./components/SearchBar";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useQueryPokedex } from "./hooks/useQueryPokedex";
 
 function App() {
-  // All pokemon (start with empty array)
-  const [pokemon, setPokemon] = useState([]);
 
   // Keep track of selected pokemon
   const [selectedPokemon, setSelectedPokemon] = useState(null);
@@ -16,23 +15,12 @@ function App() {
     gen: "1"
   });
 
+  const { data: pokemon, isLoading, error } = useQueryPokedex(searchOptions.gen);
+
   // Filtered list based on searchTerm
   const filteredPokemon = pokemon.filter((pokemon) =>
     pokemon.name.toLowerCase().includes(searchOptions.searchTerm.toLowerCase())
   );
-
-  // Function to fetch pokemon based on search gen
-  async function fetchPokemonByGen(gen) {
-    const url = `https://pkserve.ocean.anhydrous.dev/api/pokedex?gen=${gen}`;
-    const response = await fetch(url);
-    const data = await response.json();
-    setPokemon(data);
-  }
-
-  // Effect to fetch pokemon when gen changes
-  useEffect(() => {
-    fetchPokemonByGen(searchOptions.gen);
-  }, [searchOptions.gen]);
 
   return (
     <div className="pokedex-container">

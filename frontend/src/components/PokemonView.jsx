@@ -2,24 +2,10 @@ import PokemonImageView from "./PokemonImageView";
 import PokemonTypesList from "./PokemonTypesList";
 import PokedexEntry from "./PokedexEntry";
 import { placeholderPokemon } from "../js/dummy-data";
-import { useEffect, useState } from "react";
+import { useQueryPokemon } from "../hooks/useQueryPokemon";
 
 export default function PokemonView({ dexNumber }) {
-  const [pokemon, setPokemon] = useState(null);
-
-  // Function to fetch pokemon details by dex number
-  async function fetchPokemonDetails(dexNumber) {
-    if (!dexNumber) return setPokemon(null); // Clear pokemon if no dex number
-    const url = `https://pkserve.ocean.anhydrous.dev/api/pokedex/${dexNumber}`;
-    const response = await fetch(url);
-    const data = await response.json();
-    setPokemon(data);
-  }
-
-  // Effect to fetch pokemon details when dex number changes
-  useEffect(() => {
-    fetchPokemonDetails(dexNumber);
-  }, [dexNumber]);
+  const { data: pokemon, isLoading, error } = useQueryPokemon(dexNumber);
 
   // Destructure the necessary properties from the pokemon object, or use placeholder data if pokemon is null
   const { name, dexEntry, normalImage, shinyImage, types } = pokemon || placeholderPokemon;

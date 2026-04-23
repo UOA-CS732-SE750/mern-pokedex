@@ -1,0 +1,37 @@
+{
+  // Task Buttons Extension - Demo Navigation Controls
+  // Adds clickable buttons to the status bar for demo navigation
+  "VsCodeTaskButtons.showCounter": false,
+  "VsCodeTaskButtons.tasks": [
+    {
+      "label": "$(chevron-left) Prev step",
+      "task": "◀️ Demo: Previous Step",
+      "tooltip": "Go to previous demo step (Cmd+Shift+←)"
+    },
+    {
+      "label": "$(chevron-right) Next step",
+      "task": "▶️ Demo: Next Step",
+      "tooltip": "Go to next demo step (Cmd+Shift+→)"
+    },
+    {
+      "label": "$(list-ordered) List steps",
+      "task": "📚 Demo: List All Steps",
+      "tooltip": "Show all demo steps (Cmd+Shift+L)"
+    },
+    // {
+    //   "label": "$(go-to-file) Jump",
+    //   "task": "🎯 Demo: Jump to Step",
+    //   "tooltip": "Jump to a specific step"
+    // },
+    {
+      "label": "$(home) Main",
+      "task": "🏠 Demo: Reset to Main",
+      "tooltip": "Return to main branch (Cmd+Shift+H)"
+    },
+    {
+      "label": "$(debug-start) Step 1",
+      "task": "🎬 Demo: Start from Beginning",
+      "tooltip": "Start demo from step-1"
+    }
+  ]
+}

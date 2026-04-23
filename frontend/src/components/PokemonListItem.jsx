@@ -2,7 +2,18 @@ import clsx from "clsx";
 import StarCheckbox from "./StarCheckbox";
 import { useUpdateFavouriteStatus } from "../hooks/useUpdateFavouriteStatus";
 
-// The ...props syntax allows us to pass through any additional props from the parent component to this one
+/**
+ * PokemonListItem displays a single Pokémon in the sidebar list.
+ * 
+ * Each item shows the Pokémon's name, number, and a star checkbox for marking favourites.
+ * The item can be selected (highlighted) and supports click interactions.
+ * Additional props are passed through to the container div (e.g., onClick handlers).
+ * 
+ * @param {Object} props - Component props
+ * @param {Object} props.pokemon - The Pokémon object containing name, dexNumber, and isFavourite
+ * @param {boolean} props.isSelected - Whether this Pokémon is currently selected
+ * @param {Object} props.props - Additional props passed through to the container div
+ */
 export default function PokemonListItem({ pokemon, isSelected, ...props }) {
   const { mutateAsync: updateFavouriteStatus } = useUpdateFavouriteStatus();
 

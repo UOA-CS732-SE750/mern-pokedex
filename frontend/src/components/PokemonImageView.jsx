@@ -2,6 +2,16 @@ import { useState } from "react";
 import clsx from "clsx";
 import StarCheckbox from "./StarCheckbox";
 
+/**
+ * PokemonImageView displays Pokémon images with the ability to toggle between normal and shiny forms.
+ * 
+ * This component handles image loading states and shows a placeholder while images are loading.
+ * Users can click the star icon to switch between the normal and shiny (alternate color) form.
+ * 
+ * @param {Object} props - Component props
+ * @param {string} props.normalImage - URL of the normal form Pokémon image
+ * @param {string} props.shinyImage - URL of the shiny form Pokémon image
+ */
 export default function PokemonImageView({ normalImage, shinyImage }) {
   // State to track whether to display the shiny image or not
   const [displayShiny, setDisplayShiny] = useState(false);

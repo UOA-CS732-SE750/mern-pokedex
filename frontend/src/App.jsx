@@ -4,6 +4,17 @@ import SearchBar from "./components/SearchBar";
 import { useState } from "react";
 import { useQueryPokedex } from "./hooks/useQueryPokedex";
 
+/**
+ * App is the main Pokédex application component.
+ * 
+ * This component orchestrates the entire Pokédex interface, managing:
+ * - Selected Pokémon state
+ * - Search and filter options
+ * - Data fetching from the API
+ * - Layout with sidebar (list) and main content (detail view)
+ * 
+ * The app uses TanStack Query for data fetching and caching.
+ */
 function App() {
 
   // Keep track of selected pokemon

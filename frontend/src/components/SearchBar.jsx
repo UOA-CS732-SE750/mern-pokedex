@@ -1,5 +1,23 @@
 import { useState } from "react";
 
+/**
+ * SearchBar provides filtering controls for the Pokédex list.
+ * 
+ * Users can filter Pokémon by:
+ * - Generation (Gen 1-9 or all)
+ * - Search term (name matching)
+ * - Favourites only
+ * 
+ * The component manages multiple search options and notifies the parent
+ * component when any filter changes.
+ * 
+ * @param {Object} props - Component props
+ * @param {Object} props.searchOptions - Current search filter options
+ * @param {string} props.searchOptions.searchTerm - Text search query
+ * @param {string} props.searchOptions.gen - Selected generation ("all" or "1"-"9")
+ * @param {boolean} props.searchOptions.favouritesOnly - Whether to show only favourites
+ * @param {Function} props.onSearchOptionsChange - Callback to update search options
+ */
 export default function SearchBar({ searchOptions, onSearchOptionsChange }) {
   const { searchTerm, gen, favouritesOnly } = searchOptions;
   return (

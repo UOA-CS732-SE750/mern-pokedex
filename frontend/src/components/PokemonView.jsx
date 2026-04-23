@@ -4,6 +4,16 @@ import PokedexEntry from "./PokedexEntry";
 import { placeholderPokemon } from "../js/dummy-data";
 import { useQueryPokemon } from "../hooks/useQueryPokemon";
 
+/**
+ * PokemonView displays detailed information about a selected Pokémon.
+ * 
+ * This is the main detail panel that shows the Pokémon's name, number, image,
+ * types, and Pokédex entry. It fetches Pokémon data using the useQueryPokemon hook
+ * and displays placeholder data while loading.
+ * 
+ * @param {Object} props - Component props
+ * @param {number} props.dexNumber - The National Pokédex number of the Pokémon to display
+ */
 export default function PokemonView({ dexNumber }) {
   const { data: pokemon, isLoading, error } = useQueryPokemon(dexNumber);
 

@@ -1,0 +1,91 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "▶️ Demo: Next Step",
+      "type": "shell",
+      "command": "${workspaceFolder}/demo-next.sh",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "focus": false,
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "◀️ Demo: Previous Step",
+      "type": "shell",
+      "command": "${workspaceFolder}/demo-prev.sh",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "focus": false,
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "📚 Demo: List All Steps",
+      "type": "shell",
+      "command": "${workspaceFolder}/demo-list.sh",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "focus": false
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🎯 Demo: Jump to Step",
+      "type": "shell",
+      "command": "git",
+      "args": [
+        "checkout",
+        "${input:stepTag}"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "focus": false
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🏠 Demo: Reset to Main",
+      "type": "shell",
+      "command": "git",
+      "args": [
+        "checkout",
+        "main"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🎬 Demo: Start from Beginning",
+      "type": "shell",
+      "command": "git",
+      "args": [
+        "checkout",
+        "step-1"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "stepTag",
+      "type": "promptString",
+      "description": "Enter step tag name (e.g., step-3, step-10):",
+      "default": "step-1"
+    }
+  ]
+}

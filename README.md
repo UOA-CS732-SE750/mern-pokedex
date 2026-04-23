@@ -31,4 +31,11 @@ The API used is `https://pkserve.ocean.anhydrous.dev/api/pokedex`, which is esse
 
 **Remember:** The backend and frontend both now contain _environment varialbes_. `.env.example` files are provided in the repo, but you will need to create the actual `.env` files (by copy / pasting and modifying as needed) or provide the environment variables to your running programs in some other way.
 
+## Steps including testing
+
+- **step-16-testing-setup**: Adds Vitest to both frontend and backend, with some dummy tests that always pass
+- **step-17-testing-backend**: Adds tests to the backend, including MongoDB memory server for easy database testing, and supertest for API testing
+- **step-18-testing-frontend**: Adds tests to the frontend, including testing both hooks and components with the React testing library
+- **step-19-storybook**: Adds React Storybook to the app, along with several stories for some of our frontend components
+
 The **main** branch is setup as being equal to the final step.

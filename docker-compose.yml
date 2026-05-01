@@ -1,0 +1,57 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      - PORT=3000
+      - DB_URL=mongodb://pokedex-mongo:27017/pokedex
+      - NODE_ENV=production
+    networks:
+      - pokedex-net
+    depends_on:
+      - pokedex-mongo
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      # Set build-time arguments for the frontend.
+      # These can be accessed in the Dockerfile using ARG instruction,
+      # and can be used as build-time environment variables.
+      # args:
+      #   VITE_BACKEND_BASE_URL: http://localhost
+    networks:
+      - pokedex-net
+    depends_on:
+      - backend
+
+  pokedex-mongo:
+    image: mongo:latest
+    # ports:
+    #   - "27017:27017"
+    volumes:
+      - pokedex-mongo-data:/data/db
+    networks:
+      - pokedex-net
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - pokedex-net
+    depends_on:
+      - frontend
+      - backend
+
+volumes:
+  pokedex-mongo-data:
+    driver: local
+
+networks:
+  pokedex-net:
+    driver: bridge

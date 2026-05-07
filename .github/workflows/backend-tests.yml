@@ -3,14 +3,31 @@ name: Backend Tests
 on:
   pull_request:
     branches: [main]
-    paths:
-      - 'backend/**'
-      - '.github/workflows/backend-tests.yml'
 
 jobs:
+  changes:
+    name: Detect Changes
+    runs-on: ubuntu-latest
+    outputs:
+      backend: ${{ steps.filter.outputs.backend }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Check for backend changes
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            backend:
+              - 'backend/**'
+              - '.github/workflows/backend-tests.yml'
+
   test:
     name: Run Backend Tests
     runs-on: ubuntu-latest
+    needs: changes
+    if: needs.changes.outputs.backend == 'true'
 
     steps:
       - name: Checkout code
@@ -62,4 +79,19 @@ jobs:
 
       - name: Fail job if tests failed
         if: steps.tests.outcome == 'failure'
+        run: exit 1
+
+  # This job ensures the workflow always reports a status
+  status:
+    name: Backend Tests Status
+    runs-on: ubuntu-latest
+    needs: [changes, test]
+    if: always()
+    steps:
+      - name: Report skipped
+        if: needs.changes.outputs.backend != 'true'
+        run: echo "Backend tests skipped - no backend files changed"
+      
+      - name: Check test result
+        if: needs.changes.outputs.backend == 'true' && needs.test.result != 'success'
         run: exit 1

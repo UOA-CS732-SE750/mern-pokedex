@@ -1,0 +1,56 @@
+name: Deploy to Production
+
+on:
+  workflow_dispatch:
+
+#   push:
+#     branches: [main]
+
+jobs:
+  deploy:
+    name: Deploy Application
+    runs-on: self-hosted
+    environment:
+      name: production
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Stop running containers
+        run: docker compose down
+
+      - name: Rebuild and start containers
+        run: docker compose up --build -d
+
+      - name: Verify deployment
+        run: |
+          echo "Waiting for containers to start..."
+          sleep 10
+
+          # Get list of containers that are not running
+          NOT_RUNNING=$(docker compose ps --format json | jq -r 'select(.State != "running") | .Name' 2>/dev/null || echo "")
+
+          if [ -n "$NOT_RUNNING" ]; then
+            echo "❌ The following containers failed to start:"
+            echo "$NOT_RUNNING"
+            echo ""
+            echo "Container status:"
+            docker compose ps
+            echo ""
+            echo "Recent logs from failed containers:"
+            docker compose logs --tail=50
+            exit 1
+          fi
+
+          echo "✅ All containers are running successfully"
+          docker compose ps
+
+      - name: Report deployment status
+        if: always()
+        run: |
+          if [ ${{ job.status }} == 'success' ]; then
+            echo "✅ Deployment completed successfully!"
+          else
+            echo "❌ Deployment failed. Check logs above."
+          fi

@@ -1,0 +1,66 @@
+name: Backend Tests
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend-tests.yml'
+
+jobs:
+  test:
+    name: Run Backend Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          cache: 'npm'
+          cache-dependency-path: backend/package-lock.json
+
+      - name: Install dependencies
+        working-directory: backend
+        run: npm ci
+
+      - name: Run tests
+        working-directory: backend
+        run: npm test -- --run --reporter=verbose
+        continue-on-error: true
+        id: tests
+
+      - name: Comment test results on PR
+        if: always()
+        uses: actions/github-script@v8
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const testStatus = '${{ steps.tests.outcome }}';
+            const emoji = testStatus === 'success' ? '✅' : '❌';
+            const statusText = testStatus === 'success' ? 'PASSED' : 'FAILED';
+            
+            const body = `## ${emoji} Backend Tests ${statusText}
+            
+            **Workflow:** ${context.workflow}
+            **Status:** ${statusText}
+            **Commit:** ${context.sha.substring(0, 7)}
+            
+            ${testStatus === 'success' 
+              ? '✨ All backend tests passed successfully!' 
+              : '⚠️ Some backend tests failed. Please review the logs above.'}
+            
+            [View full test results](${context.payload.repository.html_url}/actions/runs/${context.runId})`;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });
+
+      - name: Fail job if tests failed
+        if: steps.tests.outcome == 'failure'
+        run: exit 1

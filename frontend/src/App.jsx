@@ -38,7 +38,7 @@ function App() {
     <div className="pokedex-container">
       {/* Left Panel - Pokemon List */}
       <nav className="sidebar">
-        <h2>Pokédex</h2>
+        <h2>Pokédex CS732 DEMO</h2>
 
         {/* Search bar */}
         <SearchBar
